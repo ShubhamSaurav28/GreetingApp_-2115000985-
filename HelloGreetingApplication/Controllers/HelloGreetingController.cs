@@ -1,3 +1,4 @@
+using BusinessLayer.Interface;
 using Microsoft.AspNetCore.Mvc;
 using ModelLayer.Model;
 
@@ -11,6 +12,12 @@ namespace HelloGreetingApplication.Controllers
     public class HelloGreetingController : ControllerBase
     {
         private static Dictionary<string, string> dict = new Dictionary<string, string>();
+        private readonly IGreetingBL _greetingBL;
+
+        public HelloGreetingController(IGreetingBL greetingBL)
+        {
+            _greetingBL = greetingBL;
+        }
 
         /// <summary>
         /// Get method to get the greeting message
@@ -19,11 +26,12 @@ namespace HelloGreetingApplication.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            var result = _greetingBL.GetHelloBL();
             ResponseModel<string> responseModel = new ResponseModel<string>
             {
                 Success = true,
                 Message = "Hello to Greeting App API Endpoint",
-                Data = "Hello, World!"
+                Data = result
             };
             return Ok(responseModel);
         }

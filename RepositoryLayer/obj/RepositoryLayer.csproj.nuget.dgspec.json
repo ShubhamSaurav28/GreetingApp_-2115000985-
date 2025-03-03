@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\HelloGreetingApplication\\RepositoryLayer\\RepositoryLayer.csproj": {}
+    "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\GreetingApp\\GreetingApp_-2115000985-\\RepositoryLayer\\RepositoryLayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\HelloGreetingApplication\\RepositoryLayer\\RepositoryLayer.csproj": {
+    "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\GreetingApp\\GreetingApp_-2115000985-\\RepositoryLayer\\RepositoryLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\HelloGreetingApplication\\RepositoryLayer\\RepositoryLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\GreetingApp\\GreetingApp_-2115000985-\\RepositoryLayer\\RepositoryLayer.csproj",
         "projectName": "RepositoryLayer",
-        "projectPath": "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\HelloGreetingApplication\\RepositoryLayer\\RepositoryLayer.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\GreetingApp\\GreetingApp_-2115000985-\\RepositoryLayer\\RepositoryLayer.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\HelloGreetingApplication\\RepositoryLayer\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\GreetingApp\\GreetingApp_-2115000985-\\RepositoryLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
