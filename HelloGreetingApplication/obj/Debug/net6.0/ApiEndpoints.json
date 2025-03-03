@@ -18,8 +18,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "requestModel",
-        "Type": "ModelLayer.Model.RequestModel",
+        "Name": "postRequestModel",
+        "Type": "ModelLayer.Model.PostRequestModel",
         "IsRequired": true
       }
     ],

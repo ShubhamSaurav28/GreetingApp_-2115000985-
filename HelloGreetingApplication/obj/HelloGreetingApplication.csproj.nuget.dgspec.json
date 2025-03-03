@@ -243,7 +243,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\GreetingApp\\GreetingApp_-2115000985-\\ModelLayer\\ModelLayer.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\GreetingApp\\GreetingApp_-2115000985-\\ModelLayer\\ModelLayer.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

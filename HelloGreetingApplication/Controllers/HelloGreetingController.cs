@@ -42,15 +42,14 @@ namespace HelloGreetingApplication.Controllers
         /// <param name="requestModel"></param>
         /// <returns>Stored key and value</returns>
         [HttpPost]
-        public IActionResult Post(RequestModel requestModel)
+        public IActionResult Post(PostRequestModel postRequestModel)
         {
-            dict[requestModel.key] = requestModel.value;
-
+            var result = _greetingBL.PostHelloBL(postRequestModel);
             ResponseModel<string> responseModel = new ResponseModel<string>
             {
                 Success = true,
                 Message = "Data stored successfully",
-                Data = $"Key: {requestModel.key}, Value: {requestModel.value}"
+                Data = result
             };
             return Ok(responseModel);
         }

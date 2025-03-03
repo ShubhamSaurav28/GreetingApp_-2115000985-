@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessLayer.Interface;
+using ModelLayer.Model;
 using RepositoryLayer.Interface;
 
 namespace BusinessLayer.Service
@@ -18,6 +19,11 @@ namespace BusinessLayer.Service
         public string GetHelloBL()
         {
             return _greetingRL.GetHelloRL();
+        }
+        public string PostHelloBL(PostRequestModel postRequestModel)
+        {
+            var result = _greetingRL.PostHelloRL(postRequestModel);
+            return result;
         }
     }
 }
