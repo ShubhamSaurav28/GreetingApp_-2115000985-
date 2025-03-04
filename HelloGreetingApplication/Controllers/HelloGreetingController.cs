@@ -13,10 +13,12 @@ namespace HelloGreetingApplication.Controllers
     {
         private static Dictionary<string, string> dict = new Dictionary<string, string>();
         private readonly IGreetingBL _greetingBL;
+        private ILogger<HelloGreetingController> _logger;
 
-        public HelloGreetingController(IGreetingBL greetingBL)
+        public HelloGreetingController(IGreetingBL greetingBL, ILogger<HelloGreetingController> logger)
         {
             _greetingBL = greetingBL;
+            _logger = logger;
         }
 
         /// <summary>
@@ -26,7 +28,9 @@ namespace HelloGreetingApplication.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            _logger.LogInformation("GET request received.");
             var result = _greetingBL.GetHelloBL();
+            _logger.LogInformation("GET response: {Result}", result);
             ResponseModel<string> responseModel = new ResponseModel<string>
             {
                 Success = true,
@@ -44,7 +48,10 @@ namespace HelloGreetingApplication.Controllers
         [HttpPost]
         public IActionResult Post(PostRequestModel postRequestModel)
         {
+
+            _logger.LogInformation("POST request received with FirstName: {FirstName}, LastName: {LastName}", postRequestModel.FirstName, postRequestModel.LastName);
             var result = _greetingBL.PostHelloBL(postRequestModel);
+            _logger.LogInformation("POST response: {Result}", result);
             ResponseModel<string> responseModel = new ResponseModel<string>
             {
                 Success = true,
@@ -62,8 +69,10 @@ namespace HelloGreetingApplication.Controllers
         [HttpPut]
         public IActionResult Put(RequestModel requestModel)
         {
+            _logger.LogInformation("PUT request received to update Key: {Key}", requestModel.key);
             if (!dict.ContainsKey(requestModel.key))
             {
+                _logger.LogWarning("PUT failed: Key {Key} not found", requestModel.key);
                 return NotFound(new ResponseModel<string>
                 {
                     Success = false,
@@ -73,6 +82,7 @@ namespace HelloGreetingApplication.Controllers
             }
 
             dict[requestModel.key] = requestModel.value;
+            _logger.LogInformation("PUT successful: Updated Key {Key} with Value {Value}", requestModel.key, requestModel.value);
 
             return Ok(new ResponseModel<string>
             {
@@ -90,8 +100,10 @@ namespace HelloGreetingApplication.Controllers
         [HttpPatch]
         public IActionResult Patch(RequestModel requestModel)
         {
+            _logger.LogInformation("PATCH request received for Key: {Key}", requestModel.key);
             if (!dict.ContainsKey(requestModel.key))
             {
+                _logger.LogWarning("PATCH failed: Key {Key} not found", requestModel.key);
                 return NotFound(new ResponseModel<string>
                 {
                     Success = false,
@@ -101,6 +113,7 @@ namespace HelloGreetingApplication.Controllers
             }
 
             dict[requestModel.key] += requestModel.value;
+            _logger.LogInformation("PATCH successful: Modified Key {Key}, New Value: {Value}", requestModel.key, dict[requestModel.key]);
 
             return Ok(new ResponseModel<string>
             {
@@ -118,8 +131,10 @@ namespace HelloGreetingApplication.Controllers
         [HttpDelete]
         public IActionResult Delete(DeleteRequestModel deleteRequestModel)
         {
+            _logger.LogInformation("DELETE request received for Key: {Key}", deleteRequestModel.key);
             if (!dict.ContainsKey(deleteRequestModel.key))
             {
+                _logger.LogWarning("DELETE failed: Key {Key} not found", deleteRequestModel.key);
                 return NotFound(new ResponseModel<string>
                 {
                     Success = false,
@@ -129,6 +144,7 @@ namespace HelloGreetingApplication.Controllers
             }
 
             dict.Remove(deleteRequestModel.key);
+            _logger.LogInformation("DELETE successful: Removed Key {Key}", deleteRequestModel.key);
 
             return Ok(new ResponseModel<string>
             {

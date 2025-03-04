@@ -1,25 +1,47 @@
 using BusinessLayer.Interface;
 using BusinessLayer.Service;
+using NLog.Extensions.Logging;
+using NLog.Web;
 using RepositoryLayer.Interface;
 using RepositoryLayer.Service;
 
-var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder.AddNLog();
+});
+var logger = loggerFactory.CreateLogger<Program>();
 
-builder.Services.AddControllers();
+try
+{
+    var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<IGreetingBL, GreetingBL>();
-builder.Services.AddScoped<IGreetingRL, GreetingRL>();
+    // Add services to the container.
 
-var app = builder.Build();
+    builder.Services.AddControllers();
 
-// Configure the HTTP request pipeline.
+    builder.Services.AddScoped<IGreetingBL, GreetingBL>();
+    builder.Services.AddScoped<IGreetingRL, GreetingRL>();
 
-app.UseHttpsRedirection();
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
 
-app.UseAuthorization();
+    var app = builder.Build();
 
-app.MapControllers();
+    // Configure the HTTP request pipeline.
+    app.UseSwagger();
+    app.UseSwaggerUI();
 
-app.Run();
+    app.UseHttpsRedirection();
+
+    app.UseAuthorization();
+
+    app.MapControllers();
+
+    app.Run();
+}
+catch(Exception ex)
+{
+    logger.LogError(ex, "Application stopped due to an exception.");
+    throw;
+}

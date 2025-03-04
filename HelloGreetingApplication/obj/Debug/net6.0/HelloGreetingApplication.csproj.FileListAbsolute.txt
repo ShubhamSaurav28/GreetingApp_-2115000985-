@@ -111,3 +111,11 @@ C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-21150009
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\obj\Debug\net6.0\HelloGreetingApplication.pdb
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\obj\Debug\net6.0\HelloGreetingApplication.genruntimeconfig.cache
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\obj\Debug\net6.0\ref\HelloGreetingApplication.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\NLog.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\NLog.Web.AspNetCore.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\obj\Debug\net6.0\HelloGreetingApplication.MvcApplicationPartsAssemblyInfo.cs
