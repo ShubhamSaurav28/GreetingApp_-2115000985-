@@ -72,5 +72,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HelloGreetingApplication.Controllers.HelloGreetingController",
+    "Method": "GreetingPost",
+    "RelativePath": "HelloGreeting/Greeting",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "greetingRequestModel",
+        "Type": "ModelLayer.Model.GreetingRequestModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

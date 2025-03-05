@@ -62,6 +62,27 @@ namespace HelloGreetingApplication.Controllers
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("Greeting")]
+        public IActionResult GreetingPost(GreetingRequestModel greetingRequestModel) 
+        {
+            _logger.LogInformation("POST request received with Greeting Message");
+            var result = _greetingBL.UserGreetingBL(greetingRequestModel);
+            _logger.LogInformation("POST response: {Result}", result);
+            ResponseModel<string> responseModel = new ResponseModel<string>
+            {
+                Success = true,
+                Message = "Data stored successfully",
+                Data = result
+            };
+            return Ok(responseModel);
+        }
+
+        /// <summary>
         /// Put method to update a key-value pair
         /// </summary>
         /// <param name="requestModel"></param>

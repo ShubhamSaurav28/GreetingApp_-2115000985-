@@ -11,5 +11,6 @@ namespace BusinessLayer.Interface
     {
         public string GetHelloBL();
         public string PostHelloBL(PostRequestModel postRequestModel);
+        public string UserGreetingBL(GreetingRequestModel greetingRequestModel);
     }
 }

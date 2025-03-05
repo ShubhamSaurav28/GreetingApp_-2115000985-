@@ -4,12 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ModelLayer.Model;
+using RepositoryLayer.Context;
+using RepositoryLayer.Entity;
 using RepositoryLayer.Interface;
 
 namespace RepositoryLayer.Service
 {
     public class GreetingRL : IGreetingRL
     {
+        private readonly GreetingAppContext _dbContext;
+        public GreetingRL(GreetingAppContext context)
+        {
+            _dbContext = context;
+        }
         public string GetHelloRL()
         {
             return "Hello World";
@@ -41,6 +48,24 @@ namespace RepositoryLayer.Service
                 return "Hello World";
             }
         }
+        public string UserGreetingRL(GreetingRequestModel greetingRequestModel)
+        {
+            if (greetingRequestModel == null)
+            {
+                throw new ArgumentNullException(nameof(greetingRequestModel), "GreetingRequestModel cannot be null.");
+            }
+
+            var greeting = new MessageEntity
+            {
+                Message = greetingRequestModel.Greeting,
+            };
+
+            _dbContext.GreetingMessage.Add(greeting);
+            _dbContext.SaveChanges();
+
+            return greeting.Message;
+        }
+
 
     }
 }

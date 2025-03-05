@@ -1,7 +1,10 @@
 using BusinessLayer.Interface;
 using BusinessLayer.Service;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using NLog.Extensions.Logging;
 using NLog.Web;
+using RepositoryLayer.Context;
 using RepositoryLayer.Interface;
 using RepositoryLayer.Service;
 
@@ -22,6 +25,9 @@ try
 
     builder.Services.AddScoped<IGreetingBL, GreetingBL>();
     builder.Services.AddScoped<IGreetingRL, GreetingRL>();
+
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    builder.Services.AddDbContext<GreetingAppContext>(options => options.UseSqlServer(connectionString));
 
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();

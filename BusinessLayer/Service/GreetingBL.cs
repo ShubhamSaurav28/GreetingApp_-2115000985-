@@ -25,5 +25,11 @@ namespace BusinessLayer.Service
             var result = _greetingRL.PostHelloRL(postRequestModel);
             return result;
         }
+        public string UserGreetingBL(GreetingRequestModel greetingRequestModel)
+        {
+            var result = _greetingRL.UserGreetingRL(greetingRequestModel);
+            return result;
+        }
+
     }
 }
