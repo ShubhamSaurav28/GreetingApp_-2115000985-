@@ -30,6 +30,9 @@ namespace BusinessLayer.Service
             var result = _greetingRL.UserGreetingRL(greetingRequestModel);
             return result;
         }
-
+        public string GreetingFindBL(GreetingIdFind greetingIdFind)
+        {
+            return _greetingRL.GreetingFindRL(greetingIdFind);
+        }
     }
 }

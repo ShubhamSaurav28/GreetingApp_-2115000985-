@@ -64,11 +64,11 @@ namespace HelloGreetingApplication.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="requestModel"></param>
+        /// <param name="greetingRequestModel"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("Greeting")]
-        public IActionResult GreetingPost(GreetingRequestModel greetingRequestModel) 
+        public IActionResult GreetingPost(GreetingRequestModel greetingRequestModel)
         {
             _logger.LogInformation("POST request received with Greeting Message");
             var result = _greetingBL.UserGreetingBL(greetingRequestModel);
@@ -77,6 +77,36 @@ namespace HelloGreetingApplication.Controllers
             {
                 Success = true,
                 Message = "Data stored successfully",
+                Data = result
+            };
+            return Ok(responseModel);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="greetingIdFind"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("FindGreeting")]
+        public IActionResult GreetingFind(GreetingIdFind greetingIdFind) 
+        {
+            _logger.LogInformation("POST request received with Greeting ID");
+            var result = _greetingBL.GreetingFindBL(greetingIdFind);
+            _logger.LogInformation("POST response: {Result}", result);
+            if (result == null) 
+            {
+                return BadRequest(new ResponseModel<string>
+                {
+                    Success = false,
+                    Message = "Data not Found",
+                    Data = result
+                });
+            }
+            ResponseModel<string> responseModel = new ResponseModel<string>
+            {
+                Success = true,
+                Message = "Data Found",
                 Data = result
             };
             return Ok(responseModel);

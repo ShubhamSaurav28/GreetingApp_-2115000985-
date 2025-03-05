@@ -65,7 +65,22 @@ namespace RepositoryLayer.Service
 
             return greeting.Message;
         }
+        public string GreetingFindRL(GreetingIdFind greetingIdFind) 
+        {
+            if (greetingIdFind == null)
+            {
+                throw new ArgumentNullException(nameof(greetingIdFind), "GreetingIdFind cannot be null.");
+            }
 
+            var result = _dbContext.GreetingMessage.FirstOrDefault(g => g.Id == greetingIdFind.Id);
+
+            if (result == null)
+            {
+                return null;
+            }
+
+            return result.Message;
+        }
 
     }
 }

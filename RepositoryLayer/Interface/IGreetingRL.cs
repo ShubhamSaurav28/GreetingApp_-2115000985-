@@ -12,6 +12,8 @@ namespace RepositoryLayer.Interface
         public string GetHelloRL();
         public string PostHelloRL(PostRequestModel postRequestModel);
         public string UserGreetingRL(GreetingRequestModel greetingRequestModel);
+        public string GreetingFindRL(GreetingIdFind greetingIdFind);
+
 
     }
 }
