@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ModelLayer.Model;
+using RepositoryLayer.Entity;
 
 namespace BusinessLayer.Interface
 {
@@ -13,6 +14,7 @@ namespace BusinessLayer.Interface
         public string PostHelloBL(PostRequestModel postRequestModel);
         public string UserGreetingBL(GreetingRequestModel greetingRequestModel);
         public string GreetingFindBL(GreetingIdFind greetingIdFind);
+        public List<MessageEntity> GetAllMessagesBL();
 
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BusinessLayer.Interface;
 using ModelLayer.Model;
+using RepositoryLayer.Entity;
 using RepositoryLayer.Interface;
 
 namespace BusinessLayer.Service
@@ -34,5 +35,10 @@ namespace BusinessLayer.Service
         {
             return _greetingRL.GreetingFindRL(greetingIdFind);
         }
+        public List<MessageEntity> GetAllMessagesBL()
+        {
+            return _greetingRL.GetAllMessagesRL();
+        }
+
     }
 }

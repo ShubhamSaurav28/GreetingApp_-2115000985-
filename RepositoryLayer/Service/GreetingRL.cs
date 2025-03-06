@@ -81,6 +81,18 @@ namespace RepositoryLayer.Service
 
             return result.Message;
         }
+        public List<MessageEntity> GetAllMessagesRL()
+        {
+            try
+            {
+                return _dbContext.GreetingMessage.ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return new List<MessageEntity>();
+            }
+        }
 
     }
 }

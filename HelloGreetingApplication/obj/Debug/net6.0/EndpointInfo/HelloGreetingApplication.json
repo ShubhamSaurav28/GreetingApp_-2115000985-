@@ -133,6 +133,18 @@
         }
       }
     },
+    "/HelloGreeting/GetMessages": {
+      "get": {
+        "tags": [
+          "HelloGreeting"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/HelloGreeting/Greeting": {
       "post": {
         "tags": [

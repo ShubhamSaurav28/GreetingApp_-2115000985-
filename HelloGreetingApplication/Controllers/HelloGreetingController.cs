@@ -1,6 +1,8 @@
+using System.Linq;
 using BusinessLayer.Interface;
 using Microsoft.AspNetCore.Mvc;
 using ModelLayer.Model;
+using RepositoryLayer.Entity;
 
 namespace HelloGreetingApplication.Controllers
 {
@@ -32,6 +34,23 @@ namespace HelloGreetingApplication.Controllers
             var result = _greetingBL.GetHelloBL();
             _logger.LogInformation("GET response: {Result}", result);
             ResponseModel<string> responseModel = new ResponseModel<string>
+            {
+                Success = true,
+                Message = "Hello to Greeting App API Endpoint",
+                Data = result
+            };
+            return Ok(responseModel);
+        }
+
+
+        [HttpGet]
+        [Route("GetAllMessages")]
+        public IActionResult GetMessages()
+        {
+            _logger.LogInformation("GET request received.");
+            var result = _greetingBL.GetAllMessagesBL();
+            _logger.LogInformation("GET response: {Result}", result);
+            ResponseModel<List<MessageEntity>> responseModel = new ResponseModel<List<MessageEntity>>
             {
                 Success = true,
                 Message = "Hello to Greeting App API Endpoint",
