@@ -15,6 +15,8 @@ namespace BusinessLayer.Interface
         public string UserGreetingBL(GreetingRequestModel greetingRequestModel);
         public string GreetingFindBL(GreetingIdFind greetingIdFind);
         public List<MessageEntity> GetAllMessagesBL();
+        public string EditGreetingBL(int id, string updatedMessage);
+
 
     }
 }

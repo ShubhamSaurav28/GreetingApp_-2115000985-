@@ -163,6 +163,42 @@ namespace HelloGreetingApplication.Controllers
         }
 
         /// <summary>
+        /// Edit method to update a key-value pair
+        /// </summary>
+        /// <param name="id">Key to be updated</param>
+        /// <param name="Greeting">New value</param>
+        /// <returns>Update status</returns>
+        [HttpPut]
+        [Route("EditGreeting/{id}")]
+        public IActionResult Edit(int id,EditGreetingModel editGreetingModel)
+        {
+            _logger.LogInformation("PUT request received to update Greeting ID: {Id}", id);
+
+            var result = _greetingBL.EditGreetingBL(id, editGreetingModel.Greeting);
+
+            if (result == null)
+            {
+                _logger.LogWarning("PUT failed: Greeting ID {Id} not found", id);
+                return NotFound(new ResponseModel<string>
+                {
+                    Success = false,
+                    Message = "Greeting ID not found",
+                    Data = null
+                });
+            }
+
+            _logger.LogInformation("PUT successful: Updated Greeting ID {Id} with New Message: {Message}", id, editGreetingModel.Greeting);
+
+            return Ok(new ResponseModel<string>
+            {
+                Success = true,
+                Message = "Greeting updated successfully",
+                Data = result
+            });
+        }
+
+
+        /// <summary>
         /// Patch method to modify a key's value
         /// </summary>
         /// <param name="requestModel"></param>

@@ -133,7 +133,7 @@
         }
       }
     },
-    "/HelloGreeting/GetMessages": {
+    "/HelloGreeting/GetAllMessages": {
       "get": {
         "tags": [
           "HelloGreeting"
@@ -206,6 +206,48 @@
           }
         }
       }
+    },
+    "/HelloGreeting/EditGreeting/{id}": {
+      "put": {
+        "tags": [
+          "HelloGreeting"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditGreetingModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditGreetingModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditGreetingModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -214,6 +256,16 @@
         "type": "object",
         "properties": {
           "key": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EditGreetingModel": {
+        "type": "object",
+        "properties": {
+          "greeting": {
             "type": "string",
             "nullable": true
           }

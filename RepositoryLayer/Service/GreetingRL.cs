@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ModelLayer.Model;
 using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
@@ -91,6 +92,25 @@ namespace RepositoryLayer.Service
             {
                 Console.WriteLine($"Error: {ex.Message}");
                 return new List<MessageEntity>();
+            }
+        }
+        public string EditGreetingRL(int id, string updatedMessage)
+        {
+            try
+            {
+                var greeting = _dbContext.GreetingMessage.FirstOrDefault(g => g.Id == id);
+                if (greeting == null)
+                {
+                    return null;
+                }
+
+                greeting.Message = updatedMessage;
+                _dbContext.SaveChanges();
+                return greeting.Message;
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
 
