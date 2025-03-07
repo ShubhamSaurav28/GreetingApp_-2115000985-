@@ -16,6 +16,7 @@ namespace RepositoryLayer.Interface
         public string GreetingFindRL(GreetingIdFind greetingIdFind);
         public List<MessageEntity> GetAllMessagesRL();
         public string EditGreetingRL(int id, string updatedMessage);
+        public bool DeleteGreetingRL(int id);
 
 
     }

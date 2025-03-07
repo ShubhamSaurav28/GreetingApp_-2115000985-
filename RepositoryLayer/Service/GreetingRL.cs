@@ -113,6 +113,23 @@ namespace RepositoryLayer.Service
                 return null;
             }
         }
-
+        public bool DeleteGreetingRL(int id)
+        {
+            try
+            {
+                var greeting = _dbContext.GreetingMessage.FirstOrDefault(g => g.Id == id);
+                if (greeting == null)
+                {
+                    return false;
+                }
+                _dbContext.GreetingMessage.Remove(greeting);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }
