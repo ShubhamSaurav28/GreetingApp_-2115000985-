@@ -1,0 +1,6 @@
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\Middleware\obj\Debug\net6.0\Middleware.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\Middleware\obj\Debug\net6.0\Middleware.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\Middleware\obj\Debug\net6.0\Middleware.AssemblyInfoInputs.cache
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\Middleware\obj\Debug\net6.0\Middleware.AssemblyInfo.cs
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\Middleware\obj\Debug\net6.0\Middleware.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\Middleware\obj\Debug\net6.0\Middleware.sourcelink.json
