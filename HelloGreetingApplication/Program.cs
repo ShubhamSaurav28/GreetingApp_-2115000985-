@@ -2,6 +2,7 @@ using BusinessLayer.Interface;
 using BusinessLayer.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Middleware.GlobalExceptionHandler;
 using NLog.Extensions.Logging;
 using NLog.Web;
 using RepositoryLayer.Context;
@@ -22,6 +23,14 @@ try
     // Add services to the container.
 
     builder.Services.AddControllers();
+
+    builder.Services.AddControllers(options =>
+    {
+        options.Filters.Add<GlobalExceptionFilter>(); // Register Global Exception Filter
+    });
+
+    builder.Services.AddLogging();
+
 
     builder.Services.AddScoped<IGreetingBL, GreetingBL>();
     builder.Services.AddScoped<IGreetingRL, GreetingRL>();
