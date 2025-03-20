@@ -46,8 +46,7 @@ namespace BusinessLayer.Service
 
             if (user != null && VerifyPassword(loginDTO.Password, user.PasswordHash))
             {
-                var token = "this is the token";
-                //var token = _jwtMiddleware.GenerateToken(user);
+                var token = _jwtMiddleware.GenerateToken(user);
                 Console.WriteLine("this is the token generated " + token);
                 return token;
             }
