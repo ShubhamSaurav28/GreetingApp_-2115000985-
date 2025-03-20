@@ -49,7 +49,7 @@ namespace RepositoryLayer.Service
                 return "Hello World";
             }
         }
-        public string UserGreetingRL(GreetingRequestModel greetingRequestModel)
+        public string UserGreetingRL(GreetingRequestModel greetingRequestModel,int userId)
         {
             if (greetingRequestModel == null)
             {
@@ -59,6 +59,7 @@ namespace RepositoryLayer.Service
             var greeting = new MessageEntity
             {
                 Message = greetingRequestModel.Greeting,
+                UserId = userId,
             };
 
             _dbContext.GreetingMessage.Add(greeting);

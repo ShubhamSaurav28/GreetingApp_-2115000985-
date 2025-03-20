@@ -1,5 +1,6 @@
 using System.Linq;
 using BusinessLayer.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ModelLayer.Model;
 using RepositoryLayer.Entity;
@@ -11,6 +12,7 @@ namespace HelloGreetingApplication.Controllers
     /// </summary>
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class HelloGreetingController : ControllerBase
     {
         private static Dictionary<string, string> dict = new Dictionary<string, string>();
@@ -179,6 +181,16 @@ namespace HelloGreetingApplication.Controllers
 
             try
             {
+                var userIdClaim = User.FindFirst("userId")?.Value;
+                if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
+                {
+                    return Unauthorized(new ResponseModel<string>
+                    {
+                        Success = false,
+                        Message = "Unauthorized: User ID not found in token"
+                    });
+                }
+
                 if (greetingRequestModel == null)
                 {
                     _logger.LogWarning("POST request failed: Request model is null.");
@@ -190,7 +202,7 @@ namespace HelloGreetingApplication.Controllers
                     });
                 }
 
-                var result = _greetingBL.UserGreetingBL(greetingRequestModel);
+                var result = _greetingBL.UserGreetingBL(greetingRequestModel,userId);
 
                 if (string.IsNullOrEmpty(result))
                 {

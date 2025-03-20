@@ -12,7 +12,7 @@ namespace BusinessLayer.Interface
     {
         public string GetHelloBL();
         public string PostHelloBL(PostRequestModel postRequestModel);
-        public string UserGreetingBL(GreetingRequestModel greetingRequestModel);
+        public string UserGreetingBL(GreetingRequestModel greetingRequestModel, int userId);
         public string GreetingFindBL(GreetingIdFind greetingIdFind);
         public List<MessageEntity> GetAllMessagesBL();
         public string EditGreetingBL(int id, string updatedMessage);

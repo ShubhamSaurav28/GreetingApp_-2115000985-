@@ -71,48 +71,46 @@ namespace UserRegistration.Controllers
         [HttpPost("forgot-password")]
         public IActionResult ForgotPassword(ForgotPasswordDTO forgotPasswordDTO)
         {
-            //try
-            //{
-            //    _logger.LogInformation("ForgotPassword() called for {Email}", forgotPasswordDTO.Email);
+            try
+            {
+                _logger.LogInformation("ForgotPassword() called for {Email}", forgotPasswordDTO.Email);
 
-            //    bool result = _userRegistrationBL.ForgotPasswordBL(forgotPasswordDTO);
-            //    if (result)
-            //    {
-            //        return Ok(new { Success = true, Message = "Reset password link sent to email." });
-            //    }
+                bool result = _userRegistrationBL.ForgotPasswordBL(forgotPasswordDTO);
+                if (result)
+                {
+                    return Ok(new { Success = true, Message = "Reset password link sent to email." });
+                }
 
-            //    return NotFound(new { Success = false, Message = "User not found." });
-            //}
-            //catch (Exception ex)
-            //{
-            //    _logger.LogError(ex, "Error in ForgotPassword()");
-            //    return BadRequest(new { Success = false, Message = "An error occurred while processing the request." });
-            //}
-            return BadRequest();
+                return NotFound(new { Success = false, Message = "User not found." });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in ForgotPassword()");
+                return BadRequest(new { Success = false, Message = "An error occurred while processing the request." });
+            }
         }
 
         [HttpPost]
         [Route("reset-password")]
         public IActionResult ResetPassword(ResetPasswordDTO resetPasswordDTO)
         {
-            //try
-            //{
-            //    _logger.LogInformation("ResetPassword() called for token: {Token}", resetPasswordDTO.Token);
+            try
+            {
+                _logger.LogInformation("ResetPassword() called for token: {Token}", resetPasswordDTO.Token);
 
-            //    bool result = _userRegistrationBL.ResetPasswordBL(resetPasswordDTO);
-            //    if (result)
-            //    {
-            //        return Ok(new { Success = true, Message = "Password reset successful." });
-            //    }
+                bool result = _userRegistrationBL.ResetPasswordBL(resetPasswordDTO);
+                if (result)
+                {
+                    return Ok(new { Success = true, Message = "Password reset successful." });
+                }
 
-            //    return BadRequest(new { Success = false, Message = "Invalid or expired token." });
-            //}
-            //catch (Exception ex)
-            //{
-            //    _logger.LogError(ex, "Error in ResetPassword()");
-            //    return BadRequest(new { Success = false, Message = "An error occurred while resetting the password." });
-            //}
-            return BadRequest();
+                return BadRequest(new { Success = false, Message = "Invalid or expired token." });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in ResetPassword()");
+                return BadRequest(new { Success = false, Message = "An error occurred while resetting the password." });
+            }
         }
 
 

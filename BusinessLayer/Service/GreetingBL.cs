@@ -26,9 +26,9 @@ namespace BusinessLayer.Service
             var result = _greetingRL.PostHelloRL(postRequestModel);
             return result;
         }
-        public string UserGreetingBL(GreetingRequestModel greetingRequestModel)
+        public string UserGreetingBL(GreetingRequestModel greetingRequestModel,int userId)
         {
-            var result = _greetingRL.UserGreetingRL(greetingRequestModel);
+            var result = _greetingRL.UserGreetingRL(greetingRequestModel,userId);
             return result;
         }
         public string GreetingFindBL(GreetingIdFind greetingIdFind)

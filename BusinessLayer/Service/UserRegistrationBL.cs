@@ -71,17 +71,18 @@ namespace BusinessLayer.Service
             }
 
             string resetLink = $"https://localhost:7238/reset-password?token={token}";
-            var message = new
-            {
-                To = forgotPasswordDTO.Email,
-                Subject = "Reset Your Password",
-                Body = $"<h3>Password Reset</h3><p>Click <a href='{resetLink}'>here</a> to reset your password.</p><p>{resetLink}</p>"
-            };
+            string emailBody = $"<h3>Password Reset</h3><p>Click <a href='{resetLink}'>here</a> to reset your password.</p><p>{resetLink}</p>";
+            //var message = new
+            //{
+            //    To = forgotPasswordDTO.Email,
+            //    Subject = "Reset Your Password",
+            //    Body = $"<h3>Password Reset</h3><p>Click <a href='{resetLink}'>here</a> to reset your password.</p><p>{resetLink}</p>"
+            //};
 
-            _rabbitMQProducer.PublishMessage(message);
+            //_rabbitMQProducer.PublishMessage(message);
 
 
-            //_emailServiceBL.SendEmail(forgotPasswordDTO.Email, "Password Reset Request", emailBody);
+            _emailServiceBL.SendEmailAsync(forgotPasswordDTO.Email, "Password Reset Request", emailBody);
 
             return true;
         }

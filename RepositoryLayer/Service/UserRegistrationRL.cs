@@ -45,8 +45,10 @@ namespace RepositoryLayer.Service
         public UserEntity LoginUser(LoginDTO loginDTO)
         {
             var user = _context.Users.FirstOrDefault(u => u.Email == loginDTO.Email);
+            Console.WriteLine("this is the rl for login "+user);
             if (user == null)
                 return null;
+
 
             return user;
         }
