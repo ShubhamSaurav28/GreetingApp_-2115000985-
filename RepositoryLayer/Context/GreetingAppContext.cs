@@ -23,7 +23,7 @@ namespace RepositoryLayer.Context
                 .HasOne(a => a.User)
                 .WithMany(u => u.MessageEntries)
                 .HasForeignKey(a => a.UserId)
-                .OnDelete(DeleteBehavior.Cascade);  // Ensures cascading delete
+                .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);
         }
