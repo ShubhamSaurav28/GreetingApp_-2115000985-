@@ -166,3 +166,14 @@ C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-21150009
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\Middleware.dll
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\Middleware.pdb
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\MailKit.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\MimeKit.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\RabbitMQ.Client.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\System.Formats.Asn1.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\System.Threading.Channels.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\HelloGreetingApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

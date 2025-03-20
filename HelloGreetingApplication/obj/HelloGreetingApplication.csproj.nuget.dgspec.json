@@ -32,6 +32,9 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\GreetingApp\\GreetingApp_-2115000985-\\Middleware\\Middleware.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\GreetingApp\\GreetingApp_-2115000985-\\Middleware\\Middleware.csproj"
+              },
               "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\GreetingApp\\GreetingApp_-2115000985-\\ModelLayer\\ModelLayer.csproj": {
                 "projectPath": "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\GreetingApp\\GreetingApp_-2115000985-\\ModelLayer\\ModelLayer.csproj"
               },
@@ -56,6 +59,20 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.11.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -132,6 +149,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.36, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -197,7 +218,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\GreetingApp\\GreetingApp_-2115000985-\\RepositoryLayer\\RepositoryLayer.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\Desktop\\MY\\BridgeLabs_Training\\GreetingApp\\GreetingApp_-2115000985-\\RepositoryLayer\\RepositoryLayer.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

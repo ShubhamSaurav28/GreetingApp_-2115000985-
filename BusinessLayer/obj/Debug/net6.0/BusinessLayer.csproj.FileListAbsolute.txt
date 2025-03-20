@@ -51,3 +51,5 @@ C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-21150009
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\BusinessLayer\obj\Debug\net6.0\refint\BusinessLayer.dll
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\BusinessLayer\obj\Debug\net6.0\BusinessLayer.pdb
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\BusinessLayer\obj\Debug\net6.0\ref\BusinessLayer.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\BusinessLayer\bin\Debug\net6.0\Middleware.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\GreetingApp\GreetingApp_-2115000985-\BusinessLayer\bin\Debug\net6.0\Middleware.pdb
