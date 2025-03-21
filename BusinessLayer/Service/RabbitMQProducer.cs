@@ -20,6 +20,7 @@ namespace BusinessLayer.Service
 
         public void PublishMessage(object message)
         {
+            Console.WriteLine("this is the start of publish producer");
             var factory = new ConnectionFactory
             {
                 HostName = _config["RabbitMQ:Host"],
@@ -36,6 +37,7 @@ namespace BusinessLayer.Service
             var body = Encoding.UTF8.GetBytes(json);
 
             channel.BasicPublish(exchange: "", routingKey: _config["RabbitMQ:QueueName"], basicProperties: null, body: body);
+            Console.WriteLine("this is the end of publish producer");
 
         }
     }

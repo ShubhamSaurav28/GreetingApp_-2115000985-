@@ -25,6 +25,7 @@ namespace BusinessLayer.Service
 
         public void StartListening()
         {
+            Console.WriteLine("this is the start of listening");
             var factory = new ConnectionFactory
             {
                 HostName = _config["RabbitMQ:Host"],
@@ -47,6 +48,7 @@ namespace BusinessLayer.Service
             };
 
             channel.BasicConsume(queue: _config["RabbitMQ:QueueName"], autoAck: true, consumer: consumer);
+            Console.WriteLine("this is the end of listening");
         }
     }
 }

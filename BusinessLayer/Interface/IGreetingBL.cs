@@ -12,11 +12,11 @@ namespace BusinessLayer.Interface
     {
         public string GetHelloBL();
         public string PostHelloBL(PostRequestModel postRequestModel);
-        public string UserGreetingBL(GreetingRequestModel greetingRequestModel, int userId);
-        public string GreetingFindBL(GreetingIdFind greetingIdFind);
-        public List<MessageEntity> GetAllMessagesBL();
-        public string EditGreetingBL(int id, string updatedMessage);
-        public bool DeleteGreetingBL(int id);
+        public Task<string> UserGreetingBL(GreetingRequestModel greetingRequestModel, int userId);
+        public Task<string> GreetingFindBL(GreetingIdFind greetingIdFind);
+        public Task<List<MessageEntity>> GetAllMessagesBL();
+        public Task<string> EditGreetingBL(int id, string updatedMessage);
+        public Task<bool> DeleteGreetingBL(int id);
 
 
     }

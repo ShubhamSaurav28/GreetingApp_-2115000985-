@@ -1,27 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using ModelLayer.Model;
 using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interface;
+using StackExchange.Redis;
 
 namespace RepositoryLayer.Service
 {
     public class GreetingRL : IGreetingRL
     {
         private readonly GreetingAppContext _dbContext;
-        public GreetingRL(GreetingAppContext context)
+        private readonly StackExchange.Redis.IDatabase _redisDb;
+
+        public GreetingRL(GreetingAppContext context, IConnectionMultiplexer redis)
         {
             _dbContext = context;
+            _redisDb = redis.GetDatabase();
         }
+
         public string GetHelloRL()
         {
             return "Hello World";
         }
+
         public string PostHelloRL(PostRequestModel postRequestModel)
         {
             if (postRequestModel == null)
@@ -49,7 +56,8 @@ namespace RepositoryLayer.Service
                 return "Hello World";
             }
         }
-        public string UserGreetingRL(GreetingRequestModel greetingRequestModel,int userId)
+
+        public async Task<string> UserGreetingRL(GreetingRequestModel greetingRequestModel, int userId)
         {
             if (greetingRequestModel == null)
             {
@@ -63,71 +71,107 @@ namespace RepositoryLayer.Service
             };
 
             _dbContext.GreetingMessage.Add(greeting);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
+
+            // Invalidate cache
+            await _redisDb.KeyDeleteAsync("GreetingMessages");
 
             return greeting.Message;
         }
-        public string GreetingFindRL(GreetingIdFind greetingIdFind) 
+
+        public async Task<string> GreetingFindRL(GreetingIdFind greetingIdFind)
         {
             if (greetingIdFind == null)
             {
                 throw new ArgumentNullException(nameof(greetingIdFind), "GreetingIdFind cannot be null.");
             }
 
-            var result = _dbContext.GreetingMessage.FirstOrDefault(g => g.Id == greetingIdFind.Id);
+            string cacheKey = $"Greeting:{greetingIdFind.Id}";
+            var cachedData = await _redisDb.StringGetAsync(cacheKey);
+
+            if (!cachedData.IsNullOrEmpty)
+            {
+                return cachedData.ToString();
+            }
+
+            var result = await _dbContext.GreetingMessage.FirstOrDefaultAsync(g => g.Id == greetingIdFind.Id);
 
             if (result == null)
             {
                 return null;
             }
 
+            await _redisDb.StringSetAsync(cacheKey, result.Message, TimeSpan.FromMinutes(10));
+
             return result.Message;
         }
-        public List<MessageEntity> GetAllMessagesRL()
+
+        public async Task<List<MessageEntity>> GetAllMessagesRL()
         {
-            try
+            string cacheKey = "GreetingMessages";
+            var cachedData = await _redisDb.StringGetAsync(cacheKey);
+
+            if (!cachedData.IsNullOrEmpty)
             {
-                return _dbContext.GreetingMessage.ToList();
+                Console.WriteLine("✅ Fetching data from Redis Cache...");
+                return JsonSerializer.Deserialize<List<MessageEntity>>(cachedData);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-                return new List<MessageEntity>();
-            }
+
+            Console.WriteLine("⚠️ Cache miss! Fetching data from Database...");
+            var messages = await _dbContext.GreetingMessage.ToListAsync();
+
+            // Store the data in Redis for future requests
+            await _redisDb.StringSetAsync(cacheKey, JsonSerializer.Serialize(messages), TimeSpan.FromMinutes(10));
+
+            return messages;
         }
-        public string EditGreetingRL(int id, string updatedMessage)
+
+
+        public async Task<string> EditGreetingRL(int id, string updatedMessage)
         {
             try
             {
-                var greeting = _dbContext.GreetingMessage.FirstOrDefault(g => g.Id == id);
+                var greeting = await _dbContext.GreetingMessage.FirstOrDefaultAsync(g => g.Id == id);
                 if (greeting == null)
                 {
                     return null;
                 }
 
                 greeting.Message = updatedMessage;
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
+
+                // Invalidate cache
+                await _redisDb.KeyDeleteAsync($"Greeting:{id}");
+                await _redisDb.KeyDeleteAsync("GreetingMessages");
+
                 return greeting.Message;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
         }
-        public bool DeleteGreetingRL(int id)
+
+        public async Task<bool> DeleteGreetingRL(int id)
         {
             try
             {
-                var greeting = _dbContext.GreetingMessage.FirstOrDefault(g => g.Id == id);
+                var greeting = await _dbContext.GreetingMessage.FirstOrDefaultAsync(g => g.Id == id);
                 if (greeting == null)
                 {
                     return false;
                 }
+
                 _dbContext.GreetingMessage.Remove(greeting);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
+
+                // Invalidate cache
+                await _redisDb.KeyDeleteAsync($"Greeting:{id}");
+                await _redisDb.KeyDeleteAsync("GreetingMessages");
+
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

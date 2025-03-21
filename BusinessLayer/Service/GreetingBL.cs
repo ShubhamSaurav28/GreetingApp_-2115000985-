@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BusinessLayer.Interface;
 using ModelLayer.Model;
@@ -13,39 +10,45 @@ namespace BusinessLayer.Service
     public class GreetingBL : IGreetingBL
     {
         private readonly IGreetingRL _greetingRL;
-        public GreetingBL(IGreetingRL greetingRL) 
+
+        public GreetingBL(IGreetingRL greetingRL)
         {
             _greetingRL = greetingRL;
         }
+
         public string GetHelloBL()
         {
             return _greetingRL.GetHelloRL();
         }
+
         public string PostHelloBL(PostRequestModel postRequestModel)
         {
-            var result = _greetingRL.PostHelloRL(postRequestModel);
-            return result;
+            return _greetingRL.PostHelloRL(postRequestModel);
         }
-        public string UserGreetingBL(GreetingRequestModel greetingRequestModel,int userId)
+
+        public async Task<string> UserGreetingBL(GreetingRequestModel greetingRequestModel, int userId)
         {
-            var result = _greetingRL.UserGreetingRL(greetingRequestModel,userId);
-            return result;
+            return await _greetingRL.UserGreetingRL(greetingRequestModel, userId);
         }
-        public string GreetingFindBL(GreetingIdFind greetingIdFind)
+
+        public async Task<string> GreetingFindBL(GreetingIdFind greetingIdFind)
         {
-            return _greetingRL.GreetingFindRL(greetingIdFind);
+            return await _greetingRL.GreetingFindRL(greetingIdFind);
         }
-        public List<MessageEntity> GetAllMessagesBL()
+
+        public async Task<List<MessageEntity>> GetAllMessagesBL()
         {
-            return _greetingRL.GetAllMessagesRL();
+            return await _greetingRL.GetAllMessagesRL();
         }
-        public string EditGreetingBL(int id, string updatedMessage)
+
+        public async Task<string> EditGreetingBL(int id, string updatedMessage)
         {
-            return _greetingRL.EditGreetingRL(id, updatedMessage);
+            return await _greetingRL.EditGreetingRL(id, updatedMessage);
         }
-        public bool DeleteGreetingBL(int id)
+
+        public async Task<bool> DeleteGreetingBL(int id)
         {
-            return _greetingRL.DeleteGreetingRL(id);
+            return await _greetingRL.DeleteGreetingRL(id);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace HelloGreetingApplication.Controllers
     /// </summary>
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
+    //[Authorize]
     public class HelloGreetingController : ControllerBase
     {
         private static Dictionary<string, string> dict = new Dictionary<string, string>();
@@ -66,13 +66,13 @@ namespace HelloGreetingApplication.Controllers
         /// <returns>List of greeting messages.</returns>
         [HttpGet]
         [Route("GetAllMessages")]
-        public IActionResult GetMessages()
+        public async Task<IActionResult> GetMessages()
         {
             _logger.LogInformation("GET request received for GetAllMessages.");
 
             try
             {
-                var result = _greetingBL.GetAllMessagesBL();
+                var result = await _greetingBL.GetAllMessagesBL();
 
                 if (result == null || result.Count == 0)
                 {
@@ -175,7 +175,7 @@ namespace HelloGreetingApplication.Controllers
         /// <returns>A response indicating success or failure.</returns>
         [HttpPost]
         [Route("Greeting")]
-        public IActionResult GreetingPost(GreetingRequestModel greetingRequestModel)
+        public async Task<IActionResult> GreetingPost(GreetingRequestModel greetingRequestModel)
         {
             _logger.LogInformation("POST request received for storing a greeting message.");
 
@@ -202,7 +202,7 @@ namespace HelloGreetingApplication.Controllers
                     });
                 }
 
-                var result = _greetingBL.UserGreetingBL(greetingRequestModel,userId);
+                var result = await _greetingBL.UserGreetingBL(greetingRequestModel,userId);
 
                 if (string.IsNullOrEmpty(result))
                 {
@@ -244,13 +244,13 @@ namespace HelloGreetingApplication.Controllers
         /// <returns>The greeting message if found.</returns>
         [HttpPost]
         [Route("FindGreeting")]
-        public IActionResult GreetingFind(GreetingIdFind greetingIdFind)
+        public async Task<IActionResult> GreetingFind(GreetingIdFind greetingIdFind)
         {
             try
             {
                 _logger.LogInformation("POST request received with Greeting ID: {GreetingId}", greetingIdFind.Id);
 
-                var result = _greetingBL.GreetingFindBL(greetingIdFind);
+                var result = await _greetingBL.GreetingFindBL(greetingIdFind);
 
                 if (result == null)
                 {
@@ -336,13 +336,13 @@ namespace HelloGreetingApplication.Controllers
         /// <returns>A response indicating success or failure.</returns>
         [HttpPut]
         [Route("EditGreeting/{id}")]
-        public IActionResult Edit(int id, EditGreetingModel editGreetingModel)
+        public async Task<IActionResult> Edit(int id, EditGreetingModel editGreetingModel)
         {
             try
             {
                 _logger.LogInformation("PUT request received to update Greeting ID: {Id}", id);
 
-                var result = _greetingBL.EditGreetingBL(id, editGreetingModel.Greeting);
+                var result = await _greetingBL.EditGreetingBL(id, editGreetingModel.Greeting);
 
                 if (result == null)
                 {
@@ -474,13 +474,13 @@ namespace HelloGreetingApplication.Controllers
         /// <returns>A response indicating success or failure.</returns>
         [HttpDelete]
         [Route("DeleteGreeting/{id}")]
-        public IActionResult DeleteGreeting(int id)
+        public async Task<IActionResult> DeleteGreeting(int id)
         {
             try
             {
                 _logger.LogInformation("DELETE request received for ID: {ID}", id);
 
-                bool isDeleted = _greetingBL.DeleteGreetingBL(id);
+                bool isDeleted = await _greetingBL.DeleteGreetingBL(id);
 
                 if (!isDeleted)
                 {

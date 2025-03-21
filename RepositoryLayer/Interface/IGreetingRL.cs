@@ -12,11 +12,11 @@ namespace RepositoryLayer.Interface
     {
         public string GetHelloRL();
         public string PostHelloRL(PostRequestModel postRequestModel);
-        public string UserGreetingRL(GreetingRequestModel greetingRequestModel, int userId);
-        public string GreetingFindRL(GreetingIdFind greetingIdFind);
-        public List<MessageEntity> GetAllMessagesRL();
-        public string EditGreetingRL(int id, string updatedMessage);
-        public bool DeleteGreetingRL(int id);
+        public Task<string> UserGreetingRL(GreetingRequestModel greetingRequestModel, int userId);
+        public Task<string> GreetingFindRL(GreetingIdFind greetingIdFind);
+        public Task<List<MessageEntity>> GetAllMessagesRL();
+        public Task<string> EditGreetingRL(int id, string updatedMessage);
+        public Task<bool> DeleteGreetingRL(int id);
 
 
     }

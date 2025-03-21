@@ -13,6 +13,7 @@ using NLog.Web;
 using RepositoryLayer.Context;
 using RepositoryLayer.Interface;
 using RepositoryLayer.Service;
+using StackExchange.Redis;
 
 
 var loggerFactory = LoggerFactory.Create(builder =>
@@ -50,6 +51,10 @@ try
 
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     builder.Services.AddDbContext<GreetingAppContext>(options => options.UseSqlServer(connectionString));
+
+    var redisConfig = builder.Configuration.GetConnectionString("RedisConnection");
+    Console.WriteLine(redisConfig);
+    builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConfig));
 
     builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -116,11 +121,14 @@ try
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
-    var app = builder.Build();
+        var app = builder.Build();
 
     // Configure the HTTP request pipeline.
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    var rabbitConsumer = app.Services.GetRequiredService<RabbitMQConsumer>();
+    Task.Run(() => rabbitConsumer.StartListening());
 
     app.UseHttpsRedirection();
 
